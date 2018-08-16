@@ -1,0 +1,61 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion rootProject.ext.compile_sdk_version
+    buildToolsVersion rootProject.ext.build_tools_version
+
+    defaultConfig {
+        applicationId rootProject.ext.application_id
+        minSdkVersion rootProject.ext.mini_sdk_version
+        targetSdkVersion rootProject.ext.target_sdk_version
+        versionCode rootProject.ext.version_code
+        versionName rootProject.ext.version_name
+        testInstrumentationRunner rootProject.ext.test_runner
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            useProguard false
+        }
+    }
+
+    flavorDimensions "mode"
+
+    productFlavors {
+        def DEVELOPMENT_ENDPOINT = "https://api.spacexdata.com/v2/"
+        development {
+            dimension "mode"
+            buildConfigField "String", "ENDPOINT", "\"" + DEVELOPMENT_ENDPOINT + "\""
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation "com.android.support:appcompat-v7:${rootProject.ext.support_library_version}"
+    implementation "com.android.support:recyclerview-v7:${rootProject.ext.support_library_version}"
+    implementation "com.android.support.constraint:constraint-layout:${rootProject.ext.constraint_layout_version}"
+
+    implementation "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofit2_version}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${rootProject.ext.retrofit2_version}"
+
+    implementation "com.squareup.okhttp3:okhttp:${rootProject.ext.okhttp3_version}"
+
+    implementation "com.google.code.gson:gson:${rootProject.ext.gson_version}"
+    implementation "com.squareup.retrofit2:converter-gson:${rootProject.ext.retrofit2_version}"
+
+    implementation "io.reactivex.rxjava2:rxjava:${rootProject.ext.rxjava2_version}"
+    implementation "io.reactivex.rxjava2:rxandroid:${rootProject.ext.rxandroid_version}"
+
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    testImplementation "junit:junit:${rootProject.ext.junit_version}"
+    testImplementation "org.mockito:mockito-core:${rootProject.ext.mockito_version}"
+    testImplementation "org.powermock:powermock-module-junit4:${rootProject.ext.powermock_version}"
+    testImplementation "org.powermock:powermock-api-mockito2:${rootProject.ext.powermock_version}"
+    androidTestImplementation "com.android.support.test:runner:${rootProject.ext.support_library_test_runner_version}"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:${rootProject.ext.espresso_version}"
+}
