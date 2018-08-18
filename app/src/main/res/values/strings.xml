@@ -2,4 +2,6 @@
     <string name="app_name">Kotlin coroutines vs Rx</string>
     <string name="load_data_coroutines">Load data - Coroutines</string>
     <string name="load_data_rx">Load data - Rx</string>
+    <string name="clear">Clear</string>
+    <string name="dummy_button">dummy button</string>
 </resources>

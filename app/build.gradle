@@ -51,6 +51,9 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:${rootProject.ext.rxjava2_version}"
     implementation "io.reactivex.rxjava2:rxandroid:${rootProject.ext.rxandroid_version}"
 
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-experimental-adapter:${rootProject.ext.retrofit2_coroutines_adapter_version}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${rootProject.ext.coroutines_android_version}"
+
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation "junit:junit:${rootProject.ext.junit_version}"
     testImplementation "org.mockito:mockito-core:${rootProject.ext.mockito_version}"
